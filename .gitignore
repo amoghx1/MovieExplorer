@@ -1,0 +1,41 @@
+# Xcode
+DerivedData/
+*.xcworkspace
+xcuserdata/
+*.xccheckout
+*.moved-aside
+*.xcuserstate
+*.xcodeproj/project.xcworkspace/
+.idea/
+*.hmap
+
+# SwiftPM
+.build/
+Packages/
+Package.resolved
+
+# CocoaPods
+Pods/
+
+# Carthage
+Carthage/Build/
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+
+# Archives
+*.xcarchive
+
+# User data
+*.swp
+.DS_Store
+
+# Preview assets
+*.preview-thumbnails
+
+# Playground
+timeline.xctimeline
+playground.xcworkspace
