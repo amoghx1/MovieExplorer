@@ -70,7 +70,6 @@ final class MovieRepository: MovieRepositoryProtocol {
         }
     }
 
-    // MARK: - Save movie
     func save(movie: Movie, completion: @escaping (Result<Void, Error>) -> Void) {
         let cdMovie = CDMovie(context: context)
         cdMovie.id = Int32(movie.id)
@@ -121,73 +120,3 @@ final class MovieRepository: MovieRepositoryProtocol {
     }
 }
 
-
-
-//final class MovieRepository {
-//    private let context = CoreDataStack.shared.context
-//
-//    // MARK: - Check if saved
-//    func isMovieSaved(id: Int) -> Bool {
-//        let request: NSFetchRequest<CDMovie> = CDMovie.fetchRequest()
-//        request.predicate = NSPredicate(format: "id == %d", id)
-//        request.fetchLimit = 1
-//
-//        do {
-//            return try context.count(for: request) > 0
-//        } catch {
-//            print("  Error checking saved movie:", error)
-//            return false
-//        }
-//    }
-//
-//    // MARK: - Save movie
-//    func save(movie: Movie, completion: @escaping (Result<Void, Error>) -> Void) {
-//        let cdMovie = CDMovie(context: context)
-//        cdMovie.id = Int32(movie.id)
-//        cdMovie.title = movie.title
-//        cdMovie.overview = movie.overview
-//        cdMovie.posterPath = movie.posterPath
-//        cdMovie.releaseDate = movie.releaseDate
-//
-//        if let posterPath = movie.posterPath {
-//            let urlString = "https://image.tmdb.org/t/p/w500\(posterPath)"
-//            if let url = URL(string: urlString) {
-//                URLSession.shared.dataTask(with: url) { data, _, _ in
-//                    DispatchQueue.main.async {
-//                        cdMovie.posterImageData = data
-//                        do {
-//                            try self.context.save()
-//                            completion(.success(()))
-//                        } catch {
-//                            completion(.failure(error))
-//                        }
-//                    }
-//                }.resume()
-//                return
-//            }
-//        }
-//
-//        do {
-//            try context.save()
-//            completion(.success(()))
-//        } catch {
-//            completion(.failure(error))
-//        }
-//    }
-//
-//    // MARK: - Delete movie
-//    func deleteMovie(withID id: Int, completion: @escaping (Result<Void, Error>) -> Void) {
-//        let request: NSFetchRequest<CDMovie> = CDMovie.fetchRequest()
-//        request.predicate = NSPredicate(format: "id == %d", id)
-//
-//        do {
-//            let results = try context.fetch(request)
-//            results.forEach { context.delete($0) }
-//            try context.save()
-//            completion(.success(()))
-//        } catch {
-//            completion(.failure(error))
-//        }
-//    }
-//}
-//

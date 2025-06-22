@@ -158,30 +158,46 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
 
 class MovieCell: UICollectionViewCell {
     private let imageView = UIImageView()
+    private let titleOverlay = UIView()
+    private let titleLabel = UILabel()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
 
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        contentView.addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(imageView)
+
+        titleOverlay.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(titleOverlay)
+        applyGradient(to: titleOverlay)
+
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 14)
+        titleLabel.textColor = .white
+        titleLabel.numberOfLines = 2
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.textAlignment = .left
+        titleOverlay.addSubview(titleLabel)
 
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             imageView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
             imageView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-            imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+
+            titleOverlay.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            titleOverlay.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            titleOverlay.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            titleOverlay.heightAnchor.constraint(equalToConstant: 80),
+
+            titleLabel.leadingAnchor.constraint(equalTo: titleOverlay.leadingAnchor, constant: 8),
+            titleLabel.trailingAnchor.constraint(equalTo: titleOverlay.trailingAnchor, constant: -8),
+            titleLabel.bottomAnchor.constraint(equalTo: titleOverlay.bottomAnchor, constant: -4)
         ])
 
         contentView.layer.cornerRadius = 12
         contentView.layer.masksToBounds = true
-        //        // Optional: Add a slight shadow to the cell itself (outside contentView)
-        //        layer.shadowColor = UIColor.black.cgColor
-        //        layer.shadowOpacity = 0.15
-        //        layer.shadowOffset = CGSize(width: 0, height: 2)
-        //        layer.shadowRadius = 4
-        //        layer.masksToBounds = false
     }
 
     required init?(coder: NSCoder) {
@@ -189,6 +205,8 @@ class MovieCell: UICollectionViewCell {
     }
 
     func configure(with movie: Movie) {
+        titleLabel.text = movie.title ?? "No Title"
+
         guard let path = movie.posterPath else {
             imageView.image = nil
             return
@@ -202,40 +220,38 @@ class MovieCell: UICollectionViewCell {
 
         imageView.kf.setImage(with: url)
     }
-    
+
     func configure(with movie: CDMovie) {
+        titleLabel.text = movie.title ?? "No Title"
+
         if let data = movie.posterImageData {
             imageView.image = UIImage(data: data)
         } else {
-            imageView.image = UIImage(systemName: "photo") // fallback
+            imageView.image = UIImage(systemName: "photo")
         }
     }
 
+    private func applyGradient(to view: UIView) {
+        let gradient = CAGradientLayer()
+        gradient.colors = [UIColor.clear.cgColor, UIColor.black.withAlphaComponent(0.9).cgColor]
+        gradient.locations = [0.0, 1.0]
+        gradient.frame = bounds
+        gradient.cornerRadius = 12
+        gradient.masksToBounds = true
+        view.layer.insertSublayer(gradient, at: 0)
+
+        // Keep gradient in sync with cell size
+        view.layer.sublayers?.first?.frame = bounds
+        layer.needsDisplayOnBoundsChange = true
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        titleOverlay.layer.sublayers?.first?.frame = titleOverlay.bounds
+    }
 }
 
 
-
-//class FavouritesViewController: UIViewController {
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        view.backgroundColor = .systemBackground
-//        title = "Favourites"
-//
-//        // For now, a placeholder label
-//        let label = UILabel()
-//        label.text = "No favourites yet"
-//        label.textAlignment = .center
-//        label.textColor = .gray
-//        label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
-//        label.translatesAutoresizingMaskIntoConstraints = false
-//
-//        view.addSubview(label)
-//        NSLayoutConstraint.activate([
-//            label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            label.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-//        ])
-//    }
-//}
 
 class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
@@ -260,15 +276,12 @@ class MainTabBarController: UITabBarController {
     private func makeTabBarTransparent() {
         let appearance = UITabBarAppearance()
         appearance.configureWithTransparentBackground()
-        appearance.backgroundColor = UIColor.systemBackground.withAlphaComponent(0.8) // Lightly translucent white
+        appearance.backgroundColor = UIColor.systemBackground.withAlphaComponent(0.8)
 
-        // Optional: Remove shadow (top line)
         appearance.shadowImage = nil
         appearance.shadowColor = nil
 
         tabBar.standardAppearance = appearance
-
-        // For iOS 15+ (to affect scroll edge appearance as well)
         if #available(iOS 15.0, *) {
             tabBar.scrollEdgeAppearance = appearance
         }

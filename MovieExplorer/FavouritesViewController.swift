@@ -11,7 +11,6 @@ class FavouritesViewController: UIViewController, UICollectionViewDataSource, UI
     private var collectionView: UICollectionView!
     private var savedMovies: [CDMovie] = []
     private let repository = MovieRepository()
-    private let refreshControl = UIRefreshControl()
 
     private let emptyLabel: UILabel = {
         let label = UILabel()
@@ -51,7 +50,6 @@ class FavouritesViewController: UIViewController, UICollectionViewDataSource, UI
         collectionView.dataSource = self
         collectionView.translatesAutoresizingMaskIntoConstraints = false
 
-        // ✅ Reuse the same cell used in MainViewController
         collectionView.register(MovieCell.self, forCellWithReuseIdentifier: "MovieCell")
 
         view.addSubview(collectionView)
@@ -63,11 +61,6 @@ class FavouritesViewController: UIViewController, UICollectionViewDataSource, UI
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
         
-        collectionView.refreshControl = refreshControl
-                refreshControl.addTarget(self, action: #selector(refreshFavourites), for: .valueChanged)
-    }
-    @objc private func refreshFavourites() {
-        fetchSavedMovies()
     }
 
     private func fetchSavedMovies() {
