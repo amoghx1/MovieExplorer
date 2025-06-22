@@ -27,7 +27,6 @@ class MovieDetailViewController: UIViewController {
         configureScreen(movie: movie)
     }
 
-    // MARK: - External Configuration
     func configureScreen(movie: Movie?) {
         guard let movieID = movie?.id else { return }
         self.movie = movie
@@ -51,7 +50,6 @@ class MovieDetailViewController: UIViewController {
         }
     }
 
-    // MARK: - UI Setup
     private func setupUI() {
         // Background Image
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -81,29 +79,27 @@ class MovieDetailViewController: UIViewController {
             favouriteButton.heightAnchor.constraint(equalToConstant: 48)
         ])
 
-        // Info Blur Container
         infoBlurContainer.translatesAutoresizingMaskIntoConstraints = false
         infoBlurContainer.layer.cornerRadius = 16
         infoBlurContainer.clipsToBounds = true
         view.addSubview(infoBlurContainer)
 
-        // Title Label
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.font = UIFont.boldSystemFont(ofSize: 22)
         titleLabel.textColor = .white
         titleLabel.numberOfLines = 2
         titleLabel.textAlignment = .left
+        titleLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         infoBlurContainer.contentView.addSubview(titleLabel)
 
-        // Year Label
         yearLabel.translatesAutoresizingMaskIntoConstraints = false
         yearLabel.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
         yearLabel.textColor = .systemYellow
         yearLabel.textAlignment = .right
         yearLabel.setContentHuggingPriority(.required, for: .horizontal)
+        yearLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
         infoBlurContainer.contentView.addSubview(yearLabel)
 
-        // Overview Label
         overviewLabel.translatesAutoresizingMaskIntoConstraints = false
         overviewLabel.font = UIFont.systemFont(ofSize: 15)
         overviewLabel.textColor = .white
@@ -123,6 +119,7 @@ class MovieDetailViewController: UIViewController {
 
             yearLabel.topAnchor.constraint(equalTo: titleLabel.topAnchor),
             yearLabel.trailingAnchor.constraint(equalTo: infoBlurContainer.contentView.trailingAnchor, constant: -16),
+            yearLabel.leadingAnchor.constraint(greaterThanOrEqualTo: titleLabel.trailingAnchor, constant: 8),
 
             overviewLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 12),
             overviewLabel.leadingAnchor.constraint(equalTo: infoBlurContainer.contentView.leadingAnchor, constant: 16),
