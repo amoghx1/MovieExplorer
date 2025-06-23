@@ -15,6 +15,7 @@
                 <outlet property="crossButton" destination="iRQ-q7-vlE" id="uEd-kn-DO1"/>
                 <outlet property="durationLabel" destination="DFG-iF-tso" id="2BV-t8-DhY"/>
                 <outlet property="favouritesButton" destination="FUP-G6-akw" id="NfD-99-mmI"/>
+                <outlet property="genresLabel" destination="8j4-Nb-xLf" id="GYB-so-q3X"/>
                 <outlet property="overviewLabel" destination="azL-If-4M8" id="GWs-Ku-s8S"/>
                 <outlet property="posterImageView" destination="Dwb-Yz-Wla" id="YaN-cO-6BU"/>
                 <outlet property="ratingLabel" destination="sbv-2p-fFb" id="7jD-yY-hQj"/>
@@ -36,18 +37,15 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vir-Al-jC6" userLabel="backgroundView">
                     <rect key="frame" x="0.0" y="452" width="393" height="400"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.29999999999999999" translatesAutoresizingMaskIntoConstraints="NO" id="azL-If-4M8">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.29999999999999999" translatesAutoresizingMaskIntoConstraints="NO" id="azL-If-4M8" userLabel="overviewLabel">
                             <rect key="frame" x="10" y="80" width="373" height="240"/>
                             <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </string>
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TitleLabel" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2tE-e0-7HO" userLabel="TitleLabel">
-                            <rect key="frame" x="15" y="25" width="220" height="25"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="220" id="w2z-qH-ktS"/>
-                            </constraints>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="bottomLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TitleLabel" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2tE-e0-7HO" userLabel="TitleLabel">
+                            <rect key="frame" x="15" y="25" width="363" height="25"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -83,18 +81,31 @@
                                 <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </buttonConfiguration>
                         </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Horror, Comedy, Action" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8j4-Nb-xLf" userLabel="genresLabel">
+                            <rect key="frame" x="15" y="58" width="363" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="UBx-Kx-3nw"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <color key="textColor" systemColor="systemYellowColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="8j4-Nb-xLf" secondAttribute="trailing" constant="15" id="0pW-8D-NoH"/>
                         <constraint firstItem="azL-If-4M8" firstAttribute="top" secondItem="Vir-Al-jC6" secondAttribute="top" constant="80" id="7Dj-QZ-S7s"/>
+                        <constraint firstItem="8j4-Nb-xLf" firstAttribute="leading" secondItem="Vir-Al-jC6" secondAttribute="leading" constant="15" id="9g7-IN-5Mv"/>
                         <constraint firstItem="FUP-G6-akw" firstAttribute="centerX" secondItem="Vir-Al-jC6" secondAttribute="centerX" constant="-80" id="Ebc-5g-i3F"/>
                         <constraint firstItem="azL-If-4M8" firstAttribute="top" secondItem="2tE-e0-7HO" secondAttribute="bottom" constant="30" id="FRs-Yk-JBv"/>
                         <constraint firstItem="azL-If-4M8" firstAttribute="leading" secondItem="Vir-Al-jC6" secondAttribute="leading" constant="10" id="HLV-vW-tr8"/>
                         <constraint firstAttribute="bottom" secondItem="FUP-G6-akw" secondAttribute="bottom" constant="30" id="Iwx-9a-D1J"/>
                         <constraint firstAttribute="bottom" secondItem="WA3-de-Qgd" secondAttribute="bottom" constant="30" id="Lnn-Ti-DzB"/>
+                        <constraint firstItem="8j4-Nb-xLf" firstAttribute="top" secondItem="2tE-e0-7HO" secondAttribute="bottom" constant="8" id="M1F-zA-Skc"/>
                         <constraint firstItem="2tE-e0-7HO" firstAttribute="top" secondItem="Vir-Al-jC6" secondAttribute="top" constant="25" id="NQX-8v-4OW"/>
                         <constraint firstAttribute="bottom" secondItem="azL-If-4M8" secondAttribute="bottom" constant="80" id="WWd-Fa-C9R"/>
                         <constraint firstItem="WA3-de-Qgd" firstAttribute="leading" secondItem="FUP-G6-akw" secondAttribute="trailing" constant="15" id="XYQ-Ky-dox"/>
+                        <constraint firstAttribute="trailing" secondItem="2tE-e0-7HO" secondAttribute="trailing" constant="15" id="eyA-WX-mHr"/>
                         <constraint firstAttribute="trailing" secondItem="azL-If-4M8" secondAttribute="trailing" constant="10" id="fKR-cI-PT0"/>
                         <constraint firstItem="azL-If-4M8" firstAttribute="leading" secondItem="Vir-Al-jC6" secondAttribute="leading" constant="10" id="l11-bP-3W2"/>
                         <constraint firstAttribute="height" constant="400" id="l8Q-3z-xd5"/>
@@ -138,7 +149,7 @@
                     <color key="textColor" systemColor="systemYellowColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5.7/10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sbv-2p-fFb" userLabel="ratingLabel">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8.7/10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sbv-2p-fFb" userLabel="ratingLabel">
                     <rect key="frame" x="176" y="416" width="70" height="24"/>
                     <color key="backgroundColor" red="0.241442493556701" green="0.241442493556701" blue="0.241442493556701" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>

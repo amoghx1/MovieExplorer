@@ -7,9 +7,7 @@
 import UIKit
 import Kingfisher
 
-protocol detailVCDelegate: AnyObject {
-    func didUpdateFavourites()
-}
+
 
 
 //class MovieDetailViewControllerProgrammatic: UIViewController {

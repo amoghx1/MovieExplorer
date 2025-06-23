@@ -8,6 +8,10 @@
 import UIKit
 import CoreData
 
+protocol detailVCDelegate: AnyObject {
+    func didUpdateFavourites()
+}
+
 class MovieDetailViewController: UIViewController {
     
     @IBOutlet weak var posterImageView: UIImageView!
@@ -20,6 +24,7 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var redirectButton: UIButton!
     @IBOutlet weak var durationLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
+    @IBOutlet weak var genresLabel: UILabel!
     
     
     var movie: Movie?
@@ -77,9 +82,14 @@ class MovieDetailViewController: UIViewController {
                     }else {
                         self?.ratingLabel.isHidden = true
                     }
+                    self?.genresLabel.text = movieDetails.genres
+                        .compactMap(\.name)
+                        .prefix(4)
+                        .joined(separator: ", ")
+        
                 }
             case .failure(let error):
-                print("❌ Failed to fetch movie details:", error)
+                print("API: Failed to fetch movie details:", error)
             }
         }
     }
@@ -172,12 +182,9 @@ class MovieDetailViewController: UIViewController {
     
     
     private func setupBackgroundView() {
-        // Replace backgroundView's backgroundColor with blur effect
-        let blurEffect = UIBlurEffect(style: .systemMaterialDark) // or choose style you want
+        let blurEffect = UIBlurEffect(style: .systemMaterialDark)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.translatesAutoresizingMaskIntoConstraints = false
-       // blurEffectView.layer.cornerRadius = 0
-       // blurEffectView.clipsToBounds = true
 
         backgroundView.backgroundColor = .clear
         backgroundView.addSubview(blurEffectView)
@@ -189,9 +196,7 @@ class MovieDetailViewController: UIViewController {
             blurEffectView.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor),
             blurEffectView.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor)
         ])
-        
-//        backgroundView.layer.cornerRadius = 20
-//        backgroundView.clipsToBounds = true
+
     }
 
 
