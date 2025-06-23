@@ -7,9 +7,15 @@
 import UIKit
 import Kingfisher
 
+protocol detailVCDelegate: AnyObject {
+    func didUpdateFavourites()
+}
+
+
 class MovieDetailViewController: UIViewController {
     var movie: Movie?
     private let repository = MovieRepository()
+    weak var delegate: detailVCDelegate?
 
     private let backgroundImageView = UIImageView()
     private let infoBlurContainer = UIVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterialDark))
@@ -25,6 +31,11 @@ class MovieDetailViewController: UIViewController {
         view.backgroundColor = .black
         setupUI()
         configureScreen(movie: movie)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        delegate?.didUpdateFavourites()
     }
 
     func configureScreen(movie: Movie?) {
@@ -151,7 +162,7 @@ class MovieDetailViewController: UIViewController {
             favouriteButton.setTitle("Remove from Favourites", for: .normal)
             favouriteButton.backgroundColor = UIColor.systemGray
         } else {
-            favouriteButton.setTitle("Add to Favourites", for: .normal)
+            favouriteButton.setTitle("Mark as Favourite", for: .normal)
             favouriteButton.backgroundColor = UIColor.systemRed
         }
     }
@@ -188,10 +199,11 @@ class MovieDetailViewController: UIViewController {
         repository.deleteMovie(withID: movie.id) { result in
             switch result {
             case .success:
-                print("🗑️ Movie removed from favourites.")
+                print("Movie removed from favourites.")
             case .failure(let error):
                 print("  Failed to remove movie:", error)
             }
         }
     }
 }
+

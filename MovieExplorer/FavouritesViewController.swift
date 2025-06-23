@@ -105,6 +105,7 @@ class FavouritesViewController: UIViewController, UICollectionViewDataSource, UI
         let detailVC = MovieDetailViewController() 
         detailVC.configureScreen(movie: selectedMovie.toMovie())
         detailVC.modalPresentationStyle = .popover
+        detailVC.delegate = self
 
         if UIDevice.current.userInterfaceIdiom == .pad {
             detailVC.modalPresentationStyle = .automatic
@@ -113,4 +114,11 @@ class FavouritesViewController: UIViewController, UICollectionViewDataSource, UI
         present(detailVC, animated: true)
     }
 
+}
+
+extension FavouritesViewController : detailVCDelegate {
+    func didUpdateFavourites() {
+        fetchSavedMovies()
+    }
+    
 }

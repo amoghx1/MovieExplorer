@@ -13,7 +13,7 @@ final class CoreDataStack {
     private init() {}
 
     lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "MovieExplorer") // Match your xcdatamodeld filename
+        let container = NSPersistentContainer(name: "MovieExplorer")
         container.loadPersistentStores { _, error in
             if let error = error {
                 fatalError("  Unresolved error: \(error)")

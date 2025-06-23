@@ -6,76 +6,91 @@
 //
 
 import UIKit
-import CoreData
+import Kingfisher
 
 class MovieCell: UICollectionViewCell {
     private let imageView = UIImageView()
-    private let titleOverlay = UIView()
+    private let overlayView = UIView()
     private let titleLabel = UILabel()
+    private let heartImageView = UIImageView()
+    private let gradientLayer = CAGradientLayer()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-
+        
+        // Image View Setup
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(imageView)
-
-        titleOverlay.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(titleOverlay)
-        applyGradient(to: titleOverlay)
-
+        
+        // Gradient Overlay Setup
+        overlayView.translatesAutoresizingMaskIntoConstraints = false
+        overlayView.isUserInteractionEnabled = false
+        contentView.addSubview(overlayView)
+        applyGradient(to: overlayView)
+        
+        // Title Label Setup
         titleLabel.font = UIFont.boldSystemFont(ofSize: 14)
         titleLabel.textColor = .white
         titleLabel.numberOfLines = 2
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.textAlignment = .left
-        titleOverlay.addSubview(titleLabel)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        overlayView.addSubview(titleLabel)
+        
+        // Heart Icon Setup
+        heartImageView.translatesAutoresizingMaskIntoConstraints = false
+        heartImageView.contentMode = .scaleAspectFit
+        heartImageView.image = UIImage(systemName: "heart.fill")
+        heartImageView.tintColor = .systemRed
+        contentView.addSubview(heartImageView)
+        heartImageView.isHidden = true // default hidden
 
+        // Corner Radius
+        contentView.layer.cornerRadius = 12
+        contentView.layer.masksToBounds = true
+
+        // Constraints
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             imageView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
             imageView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
             imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-
-            titleOverlay.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            titleOverlay.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            titleOverlay.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            titleOverlay.heightAnchor.constraint(equalToConstant: 80),
-
-            titleLabel.leadingAnchor.constraint(equalTo: titleOverlay.leadingAnchor, constant: 8),
-            titleLabel.trailingAnchor.constraint(equalTo: titleOverlay.trailingAnchor, constant: -8),
-            titleLabel.bottomAnchor.constraint(equalTo: titleOverlay.bottomAnchor, constant: -4)
+            
+            overlayView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            overlayView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            overlayView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            overlayView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
+            
+            titleLabel.leadingAnchor.constraint(equalTo: overlayView.leadingAnchor, constant: 8),
+            titleLabel.trailingAnchor.constraint(equalTo: overlayView.trailingAnchor, constant: -8),
+            titleLabel.bottomAnchor.constraint(equalTo: overlayView.bottomAnchor, constant: -4),
+            
+            heartImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            heartImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            heartImageView.widthAnchor.constraint(equalToConstant: 24),
+            heartImageView.heightAnchor.constraint(equalToConstant: 24)
         ])
-
-        contentView.layer.cornerRadius = 12
-        contentView.layer.masksToBounds = true
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - Configure Methods
+
     func configure(with movie: Movie) {
         titleLabel.text = movie.title ?? "No Title"
-
-        guard let path = movie.posterPath else {
+        if let path = movie.posterPath,
+           let url = URL(string: "https://image.tmdb.org/t/p/w500\(path)") {
+            imageView.kf.setImage(with: url)
+        } else {
             imageView.image = nil
-            return
         }
-
-        let urlString = "https://image.tmdb.org/t/p/w500\(path)"
-        guard let url = URL(string: urlString) else {
-            imageView.image = nil
-            return
-        }
-
-        imageView.kf.setImage(with: url)
     }
 
     func configure(with movie: CDMovie) {
         titleLabel.text = movie.title ?? "No Title"
-
         if let data = movie.posterImageData {
             imageView.image = UIImage(data: data)
         } else {
@@ -83,23 +98,30 @@ class MovieCell: UICollectionViewCell {
         }
     }
 
+    func configure(with movie: Movie, isFavourite: Bool) {
+        configure(with: movie)
+        heartImageView.isHidden = !isFavourite
+    }
+
+    // MARK: - Gradient Layer
+
     private func applyGradient(to view: UIView) {
         let gradient = CAGradientLayer()
-        gradient.colors = [UIColor.clear.cgColor, UIColor.black.withAlphaComponent(0.9).cgColor]
-        gradient.locations = [0.0, 1.0]
+        gradient.colors = [
+            UIColor.black.withAlphaComponent(0.7).cgColor,
+            UIColor.clear.cgColor,
+            UIColor.clear.cgColor,
+            UIColor.black.withAlphaComponent(0.7).cgColor
+        ]
+        gradient.locations = [0.0, 0.2, 0.8, 1.0]
         gradient.frame = bounds
         gradient.cornerRadius = 12
-        gradient.masksToBounds = true
         view.layer.insertSublayer(gradient, at: 0)
-
-        // Keep gradient in sync with cell size
-        view.layer.sublayers?.first?.frame = bounds
-        layer.needsDisplayOnBoundsChange = true
+        view.layoutIfNeeded()
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        titleOverlay.layer.sublayers?.first?.frame = titleOverlay.bounds
+        overlayView.layer.sublayers?.first?.frame = overlayView.bounds
     }
 }
-

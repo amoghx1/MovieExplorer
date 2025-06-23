@@ -14,6 +14,7 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
     private var collectionView: UICollectionView!
     private var movies: [Movie] = []
     private let refreshControl = UIRefreshControl()
+    private let repository = MovieRepository()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,6 +96,9 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as? MovieCell else {
             fatalError("Could not dequeue MovieCell")
         }
+        let movie = movies[indexPath.item]
+        let isFavourite = repository.isMovieSaved(id: movie.id)
+        cell.configure(with: movie, isFavourite: isFavourite)
         cell.configure(with: movies[indexPath.item])
         return cell
     }
@@ -108,7 +112,9 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
         if UIDevice().userInterfaceIdiom == .pad {
             detailVC.modalPresentationStyle = .automatic
         }
+        detailVC.delegate = self
         present(detailVC, animated: true)
+        
     }
 
     // MARK: - Layout for iPad/iPhone
@@ -152,5 +158,11 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
                 completion(.failure(error))
             }
         }.resume()
+    }
+}
+
+extension MainViewController : detailVCDelegate {
+    func didUpdateFavourites() {
+        self.collectionView.reloadData()
     }
 }
