@@ -21,6 +21,7 @@ extension CDMovie {
     @NSManaged public var overview: String?
     @NSManaged public var posterPath: String?
     @NSManaged public var releaseDate: String?
+    @NSManaged public var rating: Double
     @NSManaged public var posterImageData: Data?
 
 }
@@ -36,7 +37,8 @@ extension CDMovie {
             title: self.title,
             overview: self.overview,
             posterPath: self.posterPath,
-            releaseDate: self.releaseDate
+            releaseDate: self.releaseDate,
+            rating: self.rating
         )
     }
 }

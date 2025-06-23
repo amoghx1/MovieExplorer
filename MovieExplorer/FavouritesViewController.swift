@@ -102,16 +102,27 @@ class FavouritesViewController: UIViewController, UICollectionViewDataSource, UI
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedMovie = savedMovies[indexPath.item]
         
-        let detailVC = MovieDetailViewController() 
-        detailVC.configureScreen(movie: selectedMovie.toMovie())
-        detailVC.modalPresentationStyle = .popover
-        detailVC.delegate = self
+//        let detailVC = MovieDetailViewControllerProgrammatic() 
+//        detailVC.configureScreen(movie: selectedMovie.toMovie())
+//        detailVC.modalPresentationStyle = .popover
+//        detailVC.delegate = self
+//
+//        if UIDevice.current.userInterfaceIdiom == .pad {
+//            detailVC.modalPresentationStyle = .automatic
+//        }
+//
+//        present(detailVC, animated: true)
+        
+        if let detailVC = MovieDetailViewController.instantiate(with: selectedMovie.toMovie(), delegate: self) {
+            detailVC.modalPresentationStyle = .popover
 
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            detailVC.modalPresentationStyle = .automatic
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                detailVC.modalPresentationStyle = .automatic
+            }
+
+            present(detailVC, animated: true)
         }
 
-        present(detailVC, animated: true)
     }
 
 }

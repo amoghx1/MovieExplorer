@@ -104,17 +104,16 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
 
     // MARK: - CollectionView Delegate
-
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let detailVC = MovieDetailViewController()
-        detailVC.configureScreen(movie: movies[indexPath.item])
-        detailVC.modalPresentationStyle = .popover
+        let selectedMovie = movies[indexPath.item]
+        let detailVC = MovieDetailViewController.instantiate(with: selectedMovie, delegate: self)
+        detailVC?.modalPresentationStyle = .popover
         if UIDevice().userInterfaceIdiom == .pad {
-            detailVC.modalPresentationStyle = .automatic
+            detailVC?.modalPresentationStyle = .automatic
         }
-        detailVC.delegate = self
-        present(detailVC, animated: true)
-        
+        guard let vc = detailVC else { return }
+        present(vc, animated: true)
     }
 
     // MARK: - Layout for iPad/iPhone
