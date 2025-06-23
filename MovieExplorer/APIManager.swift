@@ -60,7 +60,7 @@ class APIManager {
         }.resume()
     }
     
-    func getMovieDetails(movieID: Int, completion: @escaping (Result<Movie, Error>) -> Void) {
+    func getMovieDetails(movieID: Int, completion: @escaping (Result<MEMovieDetailResponseModel, Error>) -> Void) {
         let apiKey = "605b64f9978f0c69d58a60988f9a7804"
         guard let url = URL(string: "https://api.themoviedb.org/3/movie/\(movieID)?api_key=\(apiKey)") else {
             completion(.failure(NSError(domain: "Invalid URL", code: -1)))
@@ -81,33 +81,11 @@ class APIManager {
             }
 
             do {
-                let movie = try JSONDecoder().decode(Movie.self, from: data)
+                let movie = try JSONDecoder().decode(MEMovieDetailResponseModel.self, from: data)
                 completion(.success(movie))
             } catch {
                 completion(.failure(error))
             }
         }.resume()
-    }
-
-}
-
-
-struct MovieResponse: Codable {
-    let results: [Movie]
-}
-
-struct Movie: Codable {
-    let id: Int
-    let title: String?
-    let overview: String?
-    let posterPath: String?
-    let releaseDate: String?
-    let rating: Double?
-
-    enum CodingKeys: String, CodingKey {
-        case id, title, overview
-        case posterPath = "poster_path"
-        case releaseDate = "release_date"
-        case rating = "vote_average"
     }
 }

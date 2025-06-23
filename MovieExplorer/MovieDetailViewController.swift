@@ -17,9 +17,13 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var crossButton: UIButton!
+    @IBOutlet weak var redirectButton: UIButton!
+    @IBOutlet weak var durationLabel: UILabel!
+    @IBOutlet weak var ratingLabel: UILabel!
     
     
     var movie: Movie?
+    var movieDetails: MEMovieDetailResponseModel?
     private let repository = MovieRepository()
     weak var delegate: detailVCDelegate?
     
@@ -48,18 +52,31 @@ class MovieDetailViewController: UIViewController {
     func configureScreen(movie: Movie?) {
         guard let movieID = movie?.id else { return }
         self.movie = movie
-        
+        guard let movie = movie else { return }
+        self.updateUI(with: movie)
+      
         isFavourite = repository.isMovieSaved(id: movieID)
         updateFavouriteButtonAppearance()
+        
+        ratingLabel.layer.cornerRadius   = 6
+        yearLabel.layer.cornerRadius     = 6
+        durationLabel.layer.cornerRadius = 6
+        
+        ratingLabel.clipsToBounds        = true
+        durationLabel.clipsToBounds      = true
+        yearLabel.clipsToBounds          = true
         
         APIManager.shared.getMovieDetails(movieID: movieID) { [weak self] result in
             switch result {
             case .success(let movieDetails):
                 DispatchQueue.main.async {
-                    self?.movie = movieDetails
-                    self?.updateUI(with: movieDetails)
-                    self?.isFavourite = self?.repository.isMovieSaved(id: movieDetails.id) ?? false
-                    self?.updateFavouriteButtonAppearance()
+                    self?.movieDetails = movieDetails
+                    self?.durationLabel.text = MEUtility.getHoursMins(minutes: movieDetails.runtime)
+                    if let rating = movieDetails.voteAverage, rating != 0.0{
+                        self?.ratingLabel.text = String(format: "%.1f/10", rating)
+                    }else {
+                        self?.ratingLabel.isHidden = true
+                    }
                 }
             case .failure(let error):
                 print("❌ Failed to fetch movie details:", error)
@@ -68,9 +85,12 @@ class MovieDetailViewController: UIViewController {
     }
     
     private func setupButton() {
-        favouritesButton.layer.cornerRadius = 25
+        favouritesButton.layer.cornerRadius = 20
+        redirectButton.layer.cornerRadius = 20
         favouritesButton.addTarget(self, action: #selector(toggleFavourite), for: .touchUpInside)
         crossButton.addTarget(self, action: #selector(crossButtonTapped), for: .touchUpInside)
+        redirectButton.addTarget(self, action: #selector(redirectButtonTapped), for: .touchUpInside)
+
     }
     
     private func updateUI(with movie: Movie) {
@@ -116,6 +136,14 @@ class MovieDetailViewController: UIViewController {
         dismiss(animated: true)
     }
     
+    @objc private func redirectButtonTapped() {
+        if let homepageURLString = movieDetails?.homepage,
+           let homepageURL = URL(string: homepageURLString)  {
+            UIApplication.shared.open(homepageURL)
+        }
+       
+    }
+    
     private func addToFavourites() {
         guard let movie = movie else { return }
         
@@ -148,8 +176,8 @@ class MovieDetailViewController: UIViewController {
         let blurEffect = UIBlurEffect(style: .systemMaterialDark) // or choose style you want
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.translatesAutoresizingMaskIntoConstraints = false
-        blurEffectView.layer.cornerRadius = 20
-        blurEffectView.clipsToBounds = true
+       // blurEffectView.layer.cornerRadius = 0
+       // blurEffectView.clipsToBounds = true
 
         backgroundView.backgroundColor = .clear
         backgroundView.addSubview(blurEffectView)
@@ -162,8 +190,8 @@ class MovieDetailViewController: UIViewController {
             blurEffectView.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor)
         ])
         
-        backgroundView.layer.cornerRadius = 20
-        backgroundView.clipsToBounds = true
+//        backgroundView.layer.cornerRadius = 20
+//        backgroundView.clipsToBounds = true
     }
 
 
