@@ -11,6 +11,7 @@
 - Pull-to-refresh to reload movie data.
 - Smooth scrollable interface using `UICollectionView`.
 - Support for loading, empty, and error UI states.
+<img src="https://github.com/user-attachments/assets/bcb23498-be50-4507-8d87-aba477471e9b" alt="Home Screen Screenshot" width="300"/>
 
 ### Movie Detail Screen
 - Detailed view with:
@@ -20,26 +21,29 @@
   - Rating
 - "Mark as Favourite" feature (locally persisted).
 
+<img src="https://github.com/user-attachments/assets/dc3b8f22-2f0e-4605-9a86-170b7bec8ee3" alt="Movie Detail Screen" width="300"/>
+
+
 ### Favourites Screen
 - View list of saved favourite movies (offline access supported).
 - No API calls — all data loaded from local storage.
 
----
+<img src="https://github.com/user-attachments/assets/cc1aed74-298d-41df-b217-137ff8aeb5ad" alt="Favourites Screen" width="300"/>
 
 ## 🛠 Tech Stack
 
-- **Language**: Swift (latest stable version)
-- **UI Framework**: UIKit with Auto Layout (Programmatic or Storyboard)
+- **Language**: Swift 5.9
+- **UI Framework**: UIKit with Auto Layout (Both Programmatic and Storyboard)
 - **Networking**: URLSession
 - **Local Persistence**: Core Data
-- **Architecture**: MVVM (Model-View-ViewModel) or Clean Swift (VIP)
+- **Architecture**: MVVM (Model-View-ViewModel) 
 - **Package Management**: Swift Package Manager
 
 ---
 
 ## 🧱 Architecture
 
-This project follows the **MVVM / Clean Swift architecture**, ensuring:
+This project follows the **MVVM**, ensuring:
 - Clear separation of concerns (UI, Business Logic, Networking, Data).
 - Modular, testable, and reusable components.
 - Clean folder and file organization.
@@ -70,10 +74,6 @@ This project follows the **MVVM / Clean Swift architecture**, ensuring:
 
 ## 📷 Screenshots
 
-<!-- Add your screenshots here -->
-<!-- Example:
-<img src="screenshots/home.png" width="200"/> <img src="screenshots/detail.png" width="200"/> 
--->
 
 ---
 
