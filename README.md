@@ -103,6 +103,26 @@ This project follows the **MVVM**, ensuring:
 
 ---
 
+## 🌐 APIs Used
+
+- [The Movie Database (TMDb) API](https://developers.themoviedb.org/3):
+  - Fetching movie lists, details, and images.
+  - Used endpoints:
+    - `/trending/movie/`
+    - `/movie/{movie_id}`
+
+- [TMDb Image Base URL](https://developer.themoviedb.org/docs/image-basics)
+  - Images served via: `https://image.tmdb.org/t/p/w500{poster_path}`
+  - Supports dynamic sizing (e.g. `w200`, `w500`, etc.)
+
+---
+## ⚖️ Tradeoffs & Assumptions
+
+- **Poster image uses `.scaleToFill` contentMode**: Chosen for layout simplicity, though it may distort images on extreme aspect ratios.
+- **Core Data for local persistence**: Lightweight and native, but less flexible than alternatives like SQLite for more complex queries.
+- For smaller views classes used same class for everything rather than strict MVVM for simplicity.
+---
+
 ## 🔧 Setup Instructions
 
 1. Clone this repository:
