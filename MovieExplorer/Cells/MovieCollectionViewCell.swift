@@ -18,19 +18,16 @@ class MovieCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        // Image View Setup
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(imageView)
         
-        // Gradient Overlay Setup
         overlayView.translatesAutoresizingMaskIntoConstraints = false
         overlayView.isUserInteractionEnabled = false
         contentView.addSubview(overlayView)
         applyGradient(to: overlayView)
-        
-        // Title Label Setup
+        overlayView.layer.insertSublayer(gradientLayer, at: 0)
         titleLabel.font = UIFont.boldSystemFont(ofSize: 14)
         titleLabel.textColor = .white
         titleLabel.numberOfLines = 2
@@ -38,7 +35,6 @@ class MovieCell: UICollectionViewCell {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         overlayView.addSubview(titleLabel)
         
-        // Heart Icon Setup
         heartImageView.translatesAutoresizingMaskIntoConstraints = false
         heartImageView.contentMode = .scaleAspectFit
         heartImageView.image = UIImage(systemName: "heart.fill")
@@ -46,11 +42,9 @@ class MovieCell: UICollectionViewCell {
         contentView.addSubview(heartImageView)
         heartImageView.isHidden = true // default hidden
 
-        // Corner Radius
         contentView.layer.cornerRadius = 12
         contentView.layer.masksToBounds = true
 
-        // Constraints
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             imageView.leftAnchor.constraint(equalTo: contentView.leftAnchor),

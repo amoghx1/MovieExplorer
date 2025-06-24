@@ -29,7 +29,7 @@ class APIManager {
                 return
             }
             
-            if let error = error {
+            if error != nil {
                 let errorCode = httpResponse.statusCode
                 completion(.failure(APIError.serverError(code: errorCode)))
                 return
@@ -67,7 +67,7 @@ class APIManager {
                 return
             }
             
-            if let error = error {
+            if error != nil {
                 let errorCode = httpResponse.statusCode
                 completion(.failure(APIError.serverError(code: errorCode)))
                 return

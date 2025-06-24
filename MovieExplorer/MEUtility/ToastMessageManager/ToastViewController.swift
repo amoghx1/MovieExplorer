@@ -10,7 +10,7 @@ import UIKit
 final class ToastViewController: UIViewController {
 
     private let message: String
-    private let duration: TimeInterval = 1.2
+    private let duration: TimeInterval = 0.8
 
     private let toastLabel: UILabel = {
         let label = UILabel()
