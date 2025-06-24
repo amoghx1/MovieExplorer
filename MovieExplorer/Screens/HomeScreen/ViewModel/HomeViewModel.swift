@@ -37,12 +37,14 @@ final class HomeViewModel {
                     self?.movies = movies
                 case .failure(let error):
                     self?.onError?(error)
+                    ToastManager.show(message: "Something Went Wrong")
                 }
             }
         }
     }
 
     func refreshMovies() {
+        onLoadingStateChanged?(true)
         APIManager.shared.getMovies { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
@@ -50,6 +52,7 @@ final class HomeViewModel {
                     self?.movies = movies
                 case .failure(let error):
                     self?.onError?(error)
+                    ToastManager.show(message: "Something Went Wrong")
                 }
             }
         }

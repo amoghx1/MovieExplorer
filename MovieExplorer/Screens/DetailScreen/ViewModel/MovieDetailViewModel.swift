@@ -51,12 +51,16 @@ final class MovieDetailViewModel {
             repository.save(movie: movie) { result in
                 if case .failure(let error) = result {
                     print("Failed to save favourite:", error)
+                } else {
+                    ToastManager.show(message: "Movie added to favourites")
                 }
             }
         } else {
             repository.deleteMovie(withID: movie.id) { result in
                 if case .failure(let error) = result {
                     print("Failed to remove favourite:", error)
+                } else {
+                    ToastManager.show(message: "Movie removed from favourites")
                 }
             }
         }

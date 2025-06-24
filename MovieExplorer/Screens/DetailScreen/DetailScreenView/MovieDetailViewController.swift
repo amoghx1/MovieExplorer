@@ -122,7 +122,6 @@ class MovieDetailViewController: UIViewController {
         }
     }
     
-    // MARK: - Blur Background
     private func setupBackgroundView() {
         let blurEffect = UIBlurEffect(style: .systemMaterialDark)
         let blurView = UIVisualEffectView(effect: blurEffect)
