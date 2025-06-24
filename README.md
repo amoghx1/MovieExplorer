@@ -72,7 +72,7 @@ This project follows the **MVVM**, ensuring:
 
 ---
 
-## 📷 Screenshots
+## 📷 Additional Screenshots
 
 
 ---
@@ -81,4 +81,4 @@ This project follows the **MVVM**, ensuring:
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/your-username/movie-explorer.git
+   git clone https://github.com/amoghx1/MovieExplorer.git
