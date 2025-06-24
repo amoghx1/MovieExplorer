@@ -89,7 +89,7 @@ This project follows the **MVVM**, ensuring:
 - [x] URLSession integration with proper error handling.
 - [x] Codable for parsing API responses.
 - [x] Core Data for offline caching and favourite movie storage.
-- [x] Modular and clean MVVM/Clean Swift codebase.
+- [x] Modular MVVM Swift codebase.
 
 ---
 
