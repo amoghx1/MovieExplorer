@@ -1,4 +1,4 @@
-(24 Jun '25) Note: v0.1 available as a preview before submission
+(24 Jun '25) Note: v0.1 available as a preview before submission, any suggestions are hugely appreciated!
 # 🎬 Movie Explorer
 
 **Movie Explorer** is an iOS application built using Swift and UIKit that allows users to browse, explore, and manage their favorite movies using [The Movie DB API](https://www.themoviedb.org/documentation/api). The app is built with clean architecture principles and focuses on providing a responsive, modular, and offline-friendly movie browsing experience.
@@ -95,11 +95,11 @@ This project follows the **MVVM**, ensuring:
 
 ## 🌟 Bonus Features
 
-- [ ] Dependency Injection (e.g., for ViewModel & networking layer)
-- [ ] Offline support for previously fetched data
+- [ ] Redirection Link to the Movie's official webpage on Safari
+- [ ] Dependency Injection ( using Repository design pattern)
 - [ ] Reusable UI components
 - [ ] Memory management best practices
-- [ ] Basic Unit Tests (ViewModel / Services)
+- [ ] Illustrated Some Unit Tests
 
 ---
 
