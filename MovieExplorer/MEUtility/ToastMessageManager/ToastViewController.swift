@@ -10,11 +10,11 @@ import UIKit
 final class ToastViewController: UIViewController {
 
     private let message: String
-    private let duration: TimeInterval = 1.5
+    private let duration: TimeInterval = 1.2
 
     private let toastLabel: UILabel = {
         let label = UILabel()
-        label.backgroundColor = .black.withAlphaComponent(0.65)
+        label.backgroundColor = .black.withAlphaComponent(0.7)
         label.textColor = .white
         label.font = .systemFont(ofSize: 16, weight: .semibold)
         label.textAlignment = .center

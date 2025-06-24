@@ -9,7 +9,6 @@ import Foundation
 
 final class HomeViewModel {
 
-    // MARK: - Properties
     private let repository: MovieRepository
     private(set) var movies: [Movie] = [] {
         didSet {
@@ -48,6 +47,7 @@ final class HomeViewModel {
         onLoadingStateChanged?(true)
         APIManager.shared.getMovies { [weak self] result in
             DispatchQueue.main.async {
+                self?.onLoadingStateChanged?(false)
                 switch result {
                 case .success(let movies):
                     self?.movies = movies

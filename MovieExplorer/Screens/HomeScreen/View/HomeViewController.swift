@@ -67,10 +67,12 @@ class HomeViewController: UIViewController {
         }
 
         viewModel.onLoadingStateChanged = { [weak self] isLoading in
-            if isLoading {
-                self?.activityIndicator.startAnimating()
-            } else {
-                self?.activityIndicator.stopAnimating()
+            DispatchQueue.main.async {
+                if isLoading && !(self?.refreshControl.isRefreshing ?? false) {
+                    self?.activityIndicator.startAnimating()
+                } else {
+                    self?.activityIndicator.stopAnimating()
+                }
                 self?.refreshControl.endRefreshing()
             }
         }
