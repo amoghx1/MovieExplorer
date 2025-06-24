@@ -10,7 +10,7 @@
 ### Home Screen
 <img src="https://github.com/user-attachments/assets/bcb23498-be50-4507-8d87-aba477471e9b" alt="Home Screen Screenshot" width="200"/>
 
-- Browse a list or grid of movies (includes title, thumbnail, release year).
+- Browse a list or grid of movies (includes title and thumbnail).
 - Pull-to-refresh to reload movie data.
 - Smooth scrollable interface using `UICollectionView`.
 - Support for loading, empty, and error UI states.
