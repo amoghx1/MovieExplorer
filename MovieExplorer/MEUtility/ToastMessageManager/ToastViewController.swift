@@ -10,6 +10,7 @@ import UIKit
 final class ToastViewController: UIViewController {
 
     private let message: String
+    private let duration: TimeInterval = 1.5
 
     private let toastLabel: UILabel = {
         let label = UILabel()
@@ -62,7 +63,7 @@ final class ToastViewController: UIViewController {
         UIView.animate(withDuration: 0.3, animations: {
             self.toastLabel.alpha = 1
         }) { _ in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + self.duration) {
                 UIView.animate(withDuration: 0.3, animations: {
                     self.toastLabel.alpha = 0
                 }) { _ in

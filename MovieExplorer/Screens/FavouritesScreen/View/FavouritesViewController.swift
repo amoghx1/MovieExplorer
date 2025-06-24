@@ -23,7 +23,7 @@ class FavouritesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = AppConstants.primaryThemeColor
         title = "Favourites"
 
         setupCollectionView()
@@ -42,7 +42,7 @@ class FavouritesViewController: UIViewController {
         layout.minimumInteritemSpacing = 12
 
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .systemBackground
+        collectionView.backgroundColor = AppConstants.primaryThemeColor
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.translatesAutoresizingMaskIntoConstraints = false

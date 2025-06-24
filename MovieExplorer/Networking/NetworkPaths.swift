@@ -9,7 +9,7 @@ import Foundation
 
 enum NetworkPath {
     static let baseURL = "https://api.themoviedb.org/3"
-    static let apiKey = "605b64f9978f0c69d58a60988f9a7804"
+    static let apiKey = AppConstants.apiKey
 
     enum Endpoint {
         case trendingMovies(timeWindow: String = "day")

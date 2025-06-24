@@ -13,11 +13,11 @@ class MainTabBarController: UITabBarController {
 
         let homeVC = HomeViewController()
         homeVC.title = "Home"
-        homeVC.tabBarItem = UITabBarItem(title: "HOME", image: UIImage(systemName: "house"), tag: 0)
+        homeVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 0)
 
         let favVC = FavouritesViewController()
         favVC.title = "Favourites"
-        favVC.tabBarItem = UITabBarItem(title: "FAVOURITES", image: UIImage(systemName: "heart"), tag: 1)
+        favVC.tabBarItem = UITabBarItem(title: "Favourites", image: UIImage(systemName: "heart"), tag: 1)
 
         let homeNav = UINavigationController(rootViewController: homeVC)
         let favNav = UINavigationController(rootViewController: favVC)
@@ -30,7 +30,7 @@ class MainTabBarController: UITabBarController {
     private func makeTabBarTransparent() {
         let appearance = UITabBarAppearance()
         appearance.configureWithTransparentBackground()
-        appearance.backgroundColor = UIColor.systemBackground.withAlphaComponent(0.8)
+        appearance.backgroundColor = AppConstants.primaryThemeColor.withAlphaComponent(0.8)
 
         appearance.shadowImage = nil
         appearance.shadowColor = nil

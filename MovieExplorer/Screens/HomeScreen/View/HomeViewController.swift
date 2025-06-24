@@ -13,10 +13,12 @@ class HomeViewController: UIViewController {
     private let refreshControl = UIRefreshControl()
     private let activityIndicator = UIActivityIndicatorView(style: .large)
     private let viewModel = HomeViewModel()
+    private var emptyLabel: UILabel?
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = AppConstants.primaryThemeColor
         title = "Home"
         setupCollectionView()
         setupActivityIndicator()
@@ -30,7 +32,7 @@ class HomeViewController: UIViewController {
         layout.minimumInteritemSpacing = 12
 
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .systemBackground
+        collectionView.backgroundColor = AppConstants.primaryThemeColor
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -57,6 +59,7 @@ class HomeViewController: UIViewController {
     private func setupViewModel() {
         viewModel.onMoviesUpdated = { [weak self] in
             self?.collectionView.reloadData()
+            self?.toggleEmptyState()
         }
 
         viewModel.onError = { error in
@@ -71,6 +74,27 @@ class HomeViewController: UIViewController {
                 self?.refreshControl.endRefreshing()
             }
         }
+    }
+    
+    private func setupEmptyLabel() {
+        let label = UILabel()
+        label.text = "Couldn't Load Page"
+        label.textAlignment = .center
+        label.textColor = .gray
+        label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.isHidden = true
+
+        view.addSubview(label)
+        NSLayoutConstraint.activate([
+            label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            label.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+        self.emptyLabel = label
+    }
+    
+    private func toggleEmptyState() {
+        emptyLabel?.isHidden = viewModel.numberOfMovies > 0
     }
 
     @objc private func refreshMovies() {
