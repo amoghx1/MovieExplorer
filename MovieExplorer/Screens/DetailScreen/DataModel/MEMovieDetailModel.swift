@@ -2,7 +2,7 @@
 //  MEMovieDetailModel.swift
 //  MovieExplorer
 //
-//  Created by Amogh Raut   on 23/06/25.
+//  Created by Amogh Raut   on 22/06/25.
 //
 
 import UIKit

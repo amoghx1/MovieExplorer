@@ -11,7 +11,7 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let homeVC = MainViewController()
+        let homeVC = HomeViewController()
         homeVC.title = "Home"
         homeVC.tabBarItem = UITabBarItem(title: "HOME", image: UIImage(systemName: "house"), tag: 0)
 

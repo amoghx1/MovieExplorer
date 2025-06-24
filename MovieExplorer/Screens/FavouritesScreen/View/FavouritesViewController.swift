@@ -6,12 +6,9 @@
 //
 import UIKit
 
-class FavouritesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class FavouritesViewController: UIViewController {
 
     private var collectionView: UICollectionView!
-    private var savedMovies: [CDMovie] = []
-    private let repository = MovieRepository()
-
     private let emptyLabel: UILabel = {
         let label = UILabel()
         label.text = "No favourites yet"
@@ -22,21 +19,21 @@ class FavouritesViewController: UIViewController, UICollectionViewDataSource, UI
         return label
     }()
 
+    private let viewModel = FavouritesViewModel()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         title = "Favourites"
 
         setupCollectionView()
-        view.addSubview(emptyLabel)
-        NSLayoutConstraint.activate([
-            emptyLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            emptyLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
+        setupEmptyLabel()
+        bindViewModel()
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        fetchSavedMovies()
+        super.viewWillAppear(animated)
+        viewModel.fetchSavedMovies()
     }
 
     private func setupCollectionView() {
@@ -49,7 +46,6 @@ class FavouritesViewController: UIViewController, UICollectionViewDataSource, UI
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-
         collectionView.register(MovieCell.self, forCellWithReuseIdentifier: "MovieCell")
 
         view.addSubview(collectionView)
@@ -60,33 +56,43 @@ class FavouritesViewController: UIViewController, UICollectionViewDataSource, UI
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
-        
     }
 
-    private func fetchSavedMovies() {
-        savedMovies = repository.fetchAllMovies()
-        emptyLabel.isHidden = !savedMovies.isEmpty
-        collectionView.reloadData()
+    private func setupEmptyLabel() {
+        view.addSubview(emptyLabel)
+        NSLayoutConstraint.activate([
+            emptyLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emptyLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
     }
 
-    // MARK: - UICollectionViewDataSource
+    private func bindViewModel() {
+        viewModel.onDataChanged = { [weak self] in
+            self?.collectionView.reloadData()
+        }
+
+        viewModel.onEmptyStateChanged = { [weak self] isEmpty in
+            self?.emptyLabel.isHidden = !isEmpty
+        }
+    }
+}
+
+extension FavouritesViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return savedMovies.count
+        return viewModel.numberOfItems
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as? MovieCell else {
-            fatalError("  Could not dequeue MovieCell")
+            fatalError("Could not dequeue MovieCell")
         }
 
-        let cdMovie = savedMovies[indexPath.item]
-        cell.configure(with: cdMovie) // ✅ Uses CDMovie version of configure()
+        let cdMovie = viewModel.movie(at: indexPath)
+        cell.configure(with: cdMovie)
         return cell
     }
-
-    // MARK: - UICollectionViewDelegateFlowLayout
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
@@ -98,38 +104,20 @@ class FavouritesViewController: UIViewController, UICollectionViewDataSource, UI
         let width = (collectionWidth - spacing) / CGFloat(columns)
         return CGSize(width: width, height: width * 1.5)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selectedMovie = savedMovies[indexPath.item]
-        
-//        let detailVC = MovieDetailViewControllerProgrammatic() 
-//        detailVC.configureScreen(movie: selectedMovie.toMovie())
-//        detailVC.modalPresentationStyle = .popover
-//        detailVC.delegate = self
-//
-//        if UIDevice.current.userInterfaceIdiom == .pad {
-//            detailVC.modalPresentationStyle = .automatic
-//        }
-//
-//        present(detailVC, animated: true)
-        
-        if let detailVC = MovieDetailViewController.instantiate(with: selectedMovie.toMovie(), delegate: self) {
-            detailVC.modalPresentationStyle = .popover
+        let selectedCDMovie = viewModel.movie(at: indexPath)
+        let selectedMovie = selectedCDMovie.toMovie()
 
-            if UIDevice.current.userInterfaceIdiom == .pad {
-                detailVC.modalPresentationStyle = .automatic
-            }
-
+        if let detailVC = MovieDetailViewController.instantiate(with: selectedMovie, delegate: self) {
+            detailVC.modalPresentationStyle = UIDevice.current.userInterfaceIdiom == .pad ? .automatic : .popover
             present(detailVC, animated: true)
         }
-
     }
-
 }
 
-extension FavouritesViewController : detailVCDelegate {
+extension FavouritesViewController: detailVCDelegate {
     func didUpdateFavourites() {
-        fetchSavedMovies()
+        viewModel.fetchSavedMovies()
     }
-    
 }

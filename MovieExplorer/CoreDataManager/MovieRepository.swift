@@ -79,8 +79,7 @@ final class MovieRepository: MovieRepositoryProtocol {
         cdMovie.releaseDate = movie.releaseDate
 
         if let posterPath = movie.posterPath {
-            let urlString = "https://image.tmdb.org/t/p/w500\(posterPath)"
-            if let url = URL(string: urlString) {
+            if let url = MEUtility.getImageURL(path: posterPath) {
                 URLSession.shared.dataTask(with: url) { data, _, _ in
                     DispatchQueue.main.async {
                         cdMovie.posterImageData = data

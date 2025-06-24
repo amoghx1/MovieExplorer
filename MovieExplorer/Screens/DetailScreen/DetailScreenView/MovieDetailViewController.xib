@@ -38,7 +38,7 @@
                     <rect key="frame" x="0.0" y="452" width="393" height="400"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.29999999999999999" translatesAutoresizingMaskIntoConstraints="NO" id="azL-If-4M8" userLabel="overviewLabel">
-                            <rect key="frame" x="10" y="80" width="373" height="240"/>
+                            <rect key="frame" x="15" y="80" width="363" height="240"/>
                             <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </string>
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -51,7 +51,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FUP-G6-akw" userLabel="favouritesButton">
-                            <rect key="frame" x="42.666666666666657" y="330" width="148" height="40"/>
+                            <rect key="frame" x="46.666666666666671" y="330" width="139.66666666666663" height="40"/>
                             <color key="backgroundColor" systemColor="systemRedColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="SyM-xL-dim"/>
@@ -63,21 +63,21 @@
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <buttonConfiguration key="configuration" style="plain" title="Mark As Favourite">
-                                <fontDescription key="titleFontDescription" type="boldSystem" pointSize="14"/>
+                                <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
                                 <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </buttonConfiguration>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WA3-de-Qgd" userLabel="redirectButton">
-                            <rect key="frame" x="205.66666666666663" y="330" width="135" height="40"/>
+                            <rect key="frame" x="201.33333333333337" y="330" width="135" height="40"/>
                             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="135" id="Q52-FS-tup"/>
                                 <constraint firstAttribute="height" constant="40" id="ihu-Oa-vsj"/>
                             </constraints>
                             <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" image="globe" catalog="system" title="Read More">
+                            <buttonConfiguration key="configuration" style="plain" image="link" catalog="system" title="Read More">
                                 <backgroundConfiguration key="background" cornerRadius="20"/>
-                                <fontDescription key="titleFontDescription" type="boldSystem" pointSize="14"/>
+                                <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
                                 <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </buttonConfiguration>
                         </button>
@@ -98,7 +98,7 @@
                         <constraint firstItem="8j4-Nb-xLf" firstAttribute="leading" secondItem="Vir-Al-jC6" secondAttribute="leading" constant="15" id="9g7-IN-5Mv"/>
                         <constraint firstItem="FUP-G6-akw" firstAttribute="centerX" secondItem="Vir-Al-jC6" secondAttribute="centerX" constant="-80" id="Ebc-5g-i3F"/>
                         <constraint firstItem="azL-If-4M8" firstAttribute="top" secondItem="2tE-e0-7HO" secondAttribute="bottom" constant="30" id="FRs-Yk-JBv"/>
-                        <constraint firstItem="azL-If-4M8" firstAttribute="leading" secondItem="Vir-Al-jC6" secondAttribute="leading" constant="10" id="HLV-vW-tr8"/>
+                        <constraint firstItem="azL-If-4M8" firstAttribute="leading" secondItem="Vir-Al-jC6" secondAttribute="leading" constant="15" id="HLV-vW-tr8"/>
                         <constraint firstAttribute="bottom" secondItem="FUP-G6-akw" secondAttribute="bottom" constant="30" id="Iwx-9a-D1J"/>
                         <constraint firstAttribute="bottom" secondItem="WA3-de-Qgd" secondAttribute="bottom" constant="30" id="Lnn-Ti-DzB"/>
                         <constraint firstItem="8j4-Nb-xLf" firstAttribute="top" secondItem="2tE-e0-7HO" secondAttribute="bottom" constant="8" id="M1F-zA-Skc"/>
@@ -106,11 +106,11 @@
                         <constraint firstAttribute="bottom" secondItem="azL-If-4M8" secondAttribute="bottom" constant="80" id="WWd-Fa-C9R"/>
                         <constraint firstItem="WA3-de-Qgd" firstAttribute="leading" secondItem="FUP-G6-akw" secondAttribute="trailing" constant="15" id="XYQ-Ky-dox"/>
                         <constraint firstAttribute="trailing" secondItem="2tE-e0-7HO" secondAttribute="trailing" constant="15" id="eyA-WX-mHr"/>
-                        <constraint firstAttribute="trailing" secondItem="azL-If-4M8" secondAttribute="trailing" constant="10" id="fKR-cI-PT0"/>
-                        <constraint firstItem="azL-If-4M8" firstAttribute="leading" secondItem="Vir-Al-jC6" secondAttribute="leading" constant="10" id="l11-bP-3W2"/>
+                        <constraint firstAttribute="trailing" secondItem="azL-If-4M8" secondAttribute="trailing" constant="15" id="fKR-cI-PT0"/>
+                        <constraint firstItem="azL-If-4M8" firstAttribute="leading" secondItem="Vir-Al-jC6" secondAttribute="leading" constant="15" id="l11-bP-3W2"/>
                         <constraint firstAttribute="height" constant="400" id="l8Q-3z-xd5"/>
                         <constraint firstItem="2tE-e0-7HO" firstAttribute="leading" secondItem="Vir-Al-jC6" secondAttribute="leading" constant="15" id="uMb-wk-25e"/>
-                        <constraint firstAttribute="trailing" secondItem="azL-If-4M8" secondAttribute="trailing" constant="10" id="vQj-GY-bQt"/>
+                        <constraint firstAttribute="trailing" secondItem="azL-If-4M8" secondAttribute="trailing" constant="15" id="vQj-GY-bQt"/>
                     </constraints>
                 </view>
                 <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iRQ-q7-vlE" userLabel="crossButton">
@@ -184,7 +184,7 @@
         </view>
     </objects>
     <resources>
-        <image name="globe" catalog="system" width="128" height="123"/>
+        <image name="link" catalog="system" width="128" height="124"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

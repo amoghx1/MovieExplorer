@@ -82,7 +82,7 @@ class MovieCell: UICollectionViewCell {
     func configure(with movie: Movie) {
         titleLabel.text = movie.title ?? "No Title"
         if let path = movie.posterPath,
-           let url = URL(string: "https://image.tmdb.org/t/p/w500\(path)") {
+           let url = MEUtility.getImageURL(path: path) {
             imageView.kf.setImage(with: url)
         } else {
             imageView.image = nil
