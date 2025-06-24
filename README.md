@@ -7,13 +7,17 @@
 ## 🚀 Features
 
 ### Home Screen
+<img src="https://github.com/user-attachments/assets/bcb23498-be50-4507-8d87-aba477471e9b" alt="Home Screen Screenshot" width="200"/>
+
 - Browse a list or grid of movies (includes title, thumbnail, release year).
 - Pull-to-refresh to reload movie data.
 - Smooth scrollable interface using `UICollectionView`.
 - Support for loading, empty, and error UI states.
-<img src="https://github.com/user-attachments/assets/bcb23498-be50-4507-8d87-aba477471e9b" alt="Home Screen Screenshot" width="200"/>
 
-### Movie Detail Screen
+
+### Movie Detail Screen 
+<img src="https://github.com/user-attachments/assets/dc3b8f22-2f0e-4605-9a86-170b7bec8ee3" alt="Movie Detail Screen" width="200"/>
+
 - Detailed view with:
   - Poster image
   - Movie description / plot
@@ -21,14 +25,11 @@
   - Rating
 - "Mark as Favourite" feature (locally persisted).
 
-<img src="https://github.com/user-attachments/assets/dc3b8f22-2f0e-4605-9a86-170b7bec8ee3" alt="Movie Detail Screen" width="200"/>
+### Favourites Screen 
+<img src="https://github.com/user-attachments/assets/cc1aed74-298d-41df-b217-137ff8aeb5ad" alt="Favourites Screen" width="200"/>
 
-
-### Favourites Screen
 - View list of saved favourite movies (offline access supported).
 - No API calls — all data loaded from local storage.
-
-<img src="https://github.com/user-attachments/assets/cc1aed74-298d-41df-b217-137ff8aeb5ad" alt="Favourites Screen" width="200"/>
 ---
 
 ## 📷 Additional Screenshots
