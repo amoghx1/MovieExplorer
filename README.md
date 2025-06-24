@@ -11,7 +11,7 @@
 - Pull-to-refresh to reload movie data.
 - Smooth scrollable interface using `UICollectionView`.
 - Support for loading, empty, and error UI states.
-<img src="https://github.com/user-attachments/assets/bcb23498-be50-4507-8d87-aba477471e9b" alt="Home Screen Screenshot" width="300"/>
+<img src="https://github.com/user-attachments/assets/bcb23498-be50-4507-8d87-aba477471e9b" alt="Home Screen Screenshot" width="200"/>
 
 ### Movie Detail Screen
 - Detailed view with:
@@ -21,14 +21,43 @@
   - Rating
 - "Mark as Favourite" feature (locally persisted).
 
-<img src="https://github.com/user-attachments/assets/dc3b8f22-2f0e-4605-9a86-170b7bec8ee3" alt="Movie Detail Screen" width="300"/>
+<img src="https://github.com/user-attachments/assets/dc3b8f22-2f0e-4605-9a86-170b7bec8ee3" alt="Movie Detail Screen" width="200"/>
 
 
 ### Favourites Screen
 - View list of saved favourite movies (offline access supported).
 - No API calls — all data loaded from local storage.
 
-<img src="https://github.com/user-attachments/assets/cc1aed74-298d-41df-b217-137ff8aeb5ad" alt="Favourites Screen" width="300"/>
+<img src="https://github.com/user-attachments/assets/cc1aed74-298d-41df-b217-137ff8aeb5ad" alt="Favourites Screen" width="200"/>
+---
+
+## 📷 Additional Screenshots
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/b15b1ce0-f1ca-4657-ba13-9b90d785ae0d" alt="Add to Favourites" width="200"/>
+      <br/>
+      <strong>➕ Adding a Movie to Favourites</strong>
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/2ad18f5c-9663-4e6c-9ddb-948b756898ef" alt="Remove from Favourites" width="200"/>
+      <br/>
+      <strong>➖ Removing a Movie from Favourites</strong>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/c13bc955-53ea-4479-b7dc-30bcfb127199" alt="Hearted on Home Screen" width="200"/>
+      <br/>
+      <strong>❤️ Movie Shows as Favourite on Home Screen</strong>
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/00d76d43-f990-4811-aae8-947a5d7c272a" alt="Redirect Button Click" width="200"/>
+      <br/>
+      <strong>🔁 Redirect After Clicking Button</strong>
+    </td>
+  </tr>
+</table>
 
 ## 🛠 Tech Stack
 
@@ -69,11 +98,6 @@ This project follows the **MVVM**, ensuring:
 - [ ] Reusable UI components
 - [ ] Memory management best practices
 - [ ] Basic Unit Tests (ViewModel / Services)
-
----
-
-## 📷 Additional Screenshots
-
 
 ---
 
