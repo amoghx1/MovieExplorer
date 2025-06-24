@@ -52,7 +52,7 @@ final class MovieDetailViewModel {
                 if case .failure(let error) = result {
                     print("Failed to save favourite:", error)
                 } else {
-                    ToastManager.show(message: "Movie added to favourites")
+                    ToastManager.show(message: ToastMessages.addedToFavourites.rawValue)
                 }
             }
         } else {
@@ -60,7 +60,7 @@ final class MovieDetailViewModel {
                 if case .failure(let error) = result {
                     print("Failed to remove favourite:", error)
                 } else {
-                    ToastManager.show(message: "Movie removed from favourites")
+                    ToastManager.show(message: ToastMessages.removedFromFavourites.rawValue)
                 }
             }
         }

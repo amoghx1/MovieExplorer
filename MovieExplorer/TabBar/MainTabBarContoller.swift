@@ -23,6 +23,7 @@ class MainTabBarController: UITabBarController {
         let favNav = UINavigationController(rootViewController: favVC)
 
         viewControllers = [homeNav, favNav]
+        tabBar.tintColor = .red
 
         makeTabBarTransparent()
     }

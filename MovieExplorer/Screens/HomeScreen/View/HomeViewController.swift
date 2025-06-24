@@ -13,7 +13,7 @@ class HomeViewController: UIViewController {
     private let refreshControl = UIRefreshControl()
     private let activityIndicator = UIActivityIndicatorView(style: .large)
     private let viewModel = HomeViewModel()
-    private var emptyLabel: UILabel?
+    private let emptyLabel = UILabel()
 
 
     override func viewDidLoad() {
@@ -77,24 +77,25 @@ class HomeViewController: UIViewController {
     }
     
     private func setupEmptyLabel() {
-        let label = UILabel()
-        label.text = "Couldn't Load Page"
-        label.textAlignment = .center
-        label.textColor = .gray
-        label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.isHidden = true
+        emptyLabel.text = "Couldn't Load Page"
+        emptyLabel.textAlignment = .center
+        emptyLabel.textColor = .gray
+        emptyLabel.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+        emptyLabel.translatesAutoresizingMaskIntoConstraints = false
+        emptyLabel.isHidden = true
 
-        view.addSubview(label)
+        view.addSubview(emptyLabel)
+
         NSLayoutConstraint.activate([
-            label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            label.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            emptyLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emptyLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            emptyLabel.leadingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor, constant: 20),
+            emptyLabel.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -20)
         ])
-        self.emptyLabel = label
     }
     
     private func toggleEmptyState() {
-        emptyLabel?.isHidden = viewModel.numberOfMovies > 0
+        emptyLabel.isHidden = viewModel.numberOfMovies > 0
     }
 
     @objc private func refreshMovies() {

@@ -19,3 +19,9 @@ enum ToastManager {
         rootVC.present(toastVC, animated: false)
     }
 }
+
+enum ToastMessages : String {
+    case addedToFavourites = "Added to Favourites"
+    case removedFromFavourites = "Removed from Favourites"
+    case couldntLoadPage = "Couldn't load page"
+}

@@ -37,7 +37,8 @@ final class HomeViewModel {
                     self?.movies = movies
                 case .failure(let error):
                     self?.onError?(error)
-                    ToastManager.show(message: "Something Went Wrong")
+                    let errorMessage = (error as? APIError)?.errorDescription ?? ToastMessages.couldntLoadPage.rawValue
+                    ToastManager.show(message: errorMessage)
                 }
             }
         }
@@ -52,7 +53,8 @@ final class HomeViewModel {
                     self?.movies = movies
                 case .failure(let error):
                     self?.onError?(error)
-                    ToastManager.show(message: "Something Went Wrong")
+                    let errorMessage = (error as? APIError)?.errorDescription ?? ToastMessages.couldntLoadPage.rawValue
+                    ToastManager.show(message: errorMessage)
                 }
             }
         }
