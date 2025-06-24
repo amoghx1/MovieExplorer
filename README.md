@@ -1,3 +1,4 @@
+(24 Jun '25) Note: v0.1 available as a preview before submission
 # 🎬 Movie Explorer
 
 **Movie Explorer** is an iOS application built using Swift and UIKit that allows users to browse, explore, and manage their favorite movies using [The Movie DB API](https://www.themoviedb.org/documentation/api). The app is built with clean architecture principles and focuses on providing a responsive, modular, and offline-friendly movie browsing experience.
