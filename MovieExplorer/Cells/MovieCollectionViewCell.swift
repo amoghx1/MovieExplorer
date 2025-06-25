@@ -46,7 +46,7 @@ class MovieCell: UICollectionViewCell {
         overlayView.addSubview(titleLabel)
 
         yearLabel.font = UIFont.boldSystemFont(ofSize: 14)
-        yearLabel.textColor = .systemYellow.withAlphaComponent(0.7)
+        yearLabel.textColor = .systemYellow.withAlphaComponent(0.8)
         yearLabel.numberOfLines = 1
         yearLabel.textAlignment = .left
         yearLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -75,17 +75,17 @@ class MovieCell: UICollectionViewCell {
             overlayView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
             overlayView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
 
-            yearLabel.leadingAnchor.constraint(equalTo: overlayView.leadingAnchor, constant: 8),
-            yearLabel.topAnchor.constraint(equalTo: overlayView.topAnchor, constant: 4),
+            yearLabel.leadingAnchor.constraint(equalTo: overlayView.leadingAnchor, constant: 4),
+            yearLabel.topAnchor.constraint(equalTo: overlayView.topAnchor, constant: 10),
 
             titleLabel.leadingAnchor.constraint(equalTo: overlayView.leadingAnchor, constant: 8),
             titleLabel.trailingAnchor.constraint(equalTo: overlayView.trailingAnchor, constant: -8),
             titleLabel.bottomAnchor.constraint(equalTo: overlayView.bottomAnchor, constant: -4),
 
-            heartImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            heartImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 6),
             heartImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-            heartImageView.widthAnchor.constraint(equalToConstant: 24),
-            heartImageView.heightAnchor.constraint(equalToConstant: 24)
+            heartImageView.widthAnchor.constraint(equalToConstant: 30),
+            heartImageView.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
 
@@ -108,8 +108,6 @@ class MovieCell: UICollectionViewCell {
         view.layer.insertSublayer(gradient, at: 0)
         view.layoutIfNeeded()
     }
-
-    // MARK: - Public Configuration Methods
 
     func configure(with movie: Movie, isFavourite: Bool = false) {
         titleLabel.text = movie.title ?? "No Title"
