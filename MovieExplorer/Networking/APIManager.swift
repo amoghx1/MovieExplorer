@@ -87,32 +87,32 @@ class APIManager {
         }.resume()
     }
 
-    func searchMovies(query: String, page: Int = 1, completion: @escaping (Result<[Movie], Error>) -> Void) {
-        guard let url = NetworkPath.Endpoint.searchMovies(query: query, page: page).url() else {
-            completion(.failure(APIError.invalidURL))
-            return
-        }
-
-        let request = URLRequest(url: url)
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            
-            
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-
-            guard let data = data else {
-                completion(.failure(APIError.noData))
-                return
-            }
-
-            do {
-                let movieResponse = try JSONDecoder().decode(MovieResponse.self, from: data)
-                completion(.success(movieResponse.results))
-            } catch {
-                completion(.failure(APIError.decodingError))
-            }
-        }.resume()
-    }
+//    func searchMovies(query: String, page: Int = 1, completion: @escaping (Result<[Movie], Error>) -> Void) {
+//        guard let url = NetworkPath.Endpoint.searchMovies(query: query, page: page).url() else {
+//            completion(.failure(APIError.invalidURL))
+//            return
+//        }
+//
+//        let request = URLRequest(url: url)
+//        URLSession.shared.dataTask(with: request) { data, response, error in
+//            
+//            
+//            if let error = error {
+//                completion(.failure(error))
+//                return
+//            }
+//
+//            guard let data = data else {
+//                completion(.failure(APIError.noData))
+//                return
+//            }
+//
+//            do {
+//                let movieResponse = try JSONDecoder().decode(MovieResponse.self, from: data)
+//                completion(.success(movieResponse.results))
+//            } catch {
+//                completion(.failure(APIError.decodingError))
+//            }
+//        }.resume()
+//    }
 }

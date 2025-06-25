@@ -20,7 +20,6 @@ final class HomeViewModel {
     var onError: ((Error) -> Void)?
     var onLoadingStateChanged: ((Bool) -> Void)?
 
-    // MARK: - Init
     init(repository: MovieRepository = MovieRepository()) {
         self.repository = repository
     }
