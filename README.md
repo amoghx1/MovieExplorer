@@ -1,4 +1,4 @@
-(24 Jun '25) Note: v0.1 available as a preview before submission, any suggestions are hugely appreciated!
+
 # 🎬 Movie Explorer
 
 **Movie Explorer** is an iOS application built using Swift and UIKit that allows users to browse, explore, and manage their favorite movies using [The Movie DB API](https://www.themoviedb.org/documentation/api). The app is built with clean architecture principles and focuses on providing a responsive, modular, and offline-friendly movie browsing experience.
@@ -8,9 +8,9 @@
 ## 🚀 Features
 
 ### Home Screen
-<img src="https://github.com/user-attachments/assets/bcb23498-be50-4507-8d87-aba477471e9b" alt="Home Screen Screenshot" width="200"/>
+<img src="https://github.com/user-attachments/assets/4a2b7a14-9ba9-4ce2-9784-0c24af1a9973" alt="Home Screen Screenshot" width="200"/>
 
-- Browse a list or grid of movies (includes title and thumbnail).
+- Browse a list or grid of movies (includes title, year and thumbnail).
 - Pull-to-refresh to reload movie data.
 - Smooth scrollable interface using `UICollectionView`.
 - Support for loading, empty, and error UI states.
@@ -27,7 +27,7 @@
 - "Mark as Favourite" feature (locally persisted).
 
 ### Favourites Screen 
-<img src="https://github.com/user-attachments/assets/cc1aed74-298d-41df-b217-137ff8aeb5ad" alt="Favourites Screen" width="200"/>
+<img src="https://github.com/user-attachments/assets/cae39de4-e3a9-4e8e-a47c-303ac864960e" alt="Favourites Screen" width="200"/>
 
 - View list of saved favourite movies (offline access supported).
 - No API calls — all data loaded from local storage.
@@ -49,17 +49,18 @@
   </tr>
   <tr>
     <td align="center">
-      <img src="https://github.com/user-attachments/assets/c13bc955-53ea-4479-b7dc-30bcfb127199" alt="Hearted on Home Screen" width="200"/>
+      <img src="https://github.com/user-attachments/assets/8927492f-5bfe-4a55-93d5-fad07f5a2545" alt="Hearted on Home Screen" width="200"/>
       <br/>
       <strong>❤️ Movie Shows as Favourite on Home Screen</strong>
     </td>
     <td align="center">
       <img src="https://github.com/user-attachments/assets/00d76d43-f990-4811-aae8-947a5d7c272a" alt="Redirect Button Click" width="200"/>
       <br/>
-      <strong>🔁 Redirect After Clicking Button</strong>
+      <strong>🔁 Redirect to Official Site from Read More button</strong>
     </td>
   </tr>
 </table>
+
 
 ## 🛠 Tech Stack
 
