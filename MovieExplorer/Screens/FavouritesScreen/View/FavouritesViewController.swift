@@ -11,7 +11,7 @@ class FavouritesViewController: UIViewController {
     private var collectionView: UICollectionView!
     private let emptyLabel: UILabel = {
         let label = UILabel()
-        label.text = "No favourites yet"
+        label.text = AppConstants.noFavouritesYetMessage
         label.textAlignment = .center
         label.textColor = .gray
         label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
@@ -24,7 +24,7 @@ class FavouritesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = AppConstants.primaryThemeColor
-        title = "Favourites"
+        title = AppConstants.favouritesTabName
 
         setupCollectionView()
         setupEmptyLabel()

@@ -12,12 +12,16 @@ class MainTabBarController: UITabBarController {
         super.viewDidLoad()
 
         let homeVC = HomeViewController()
-        homeVC.title = "Home"
-        homeVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 0)
+        homeVC.title = AppConstants.homeTabName
+        homeVC.tabBarItem = UITabBarItem(title: AppConstants.homeTabName,
+                                         image: UIImage(systemName: "house"),
+                                         tag: 0)
 
         let favVC = FavouritesViewController()
         favVC.title = "Favourites"
-        favVC.tabBarItem = UITabBarItem(title: "Favourites", image: UIImage(systemName: "heart"), tag: 1)
+        favVC.tabBarItem = UITabBarItem(title: AppConstants.favouritesTabName,
+                                        image: UIImage(systemName: "heart"),
+                                        tag: 1)
 
         let homeNav = UINavigationController(rootViewController: homeVC)
         let favNav = UINavigationController(rootViewController: favVC)

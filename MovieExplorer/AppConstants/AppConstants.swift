@@ -11,5 +11,8 @@ class AppConstants {
     
     static var apiKey: String = "605b64f9978f0c69d58a60988f9a7804"
     static var primaryThemeColor : UIColor = .black // .sytemBackground
+    static var noFavouritesYetMessage : String = "No Favourites Yet"
+    static var favouritesTabName = "Favourites"
+    static var homeTabName = "Favourites"
         
 }
